@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Set your backend API endpoint (use your Render, Railway, etc. backend URL)
-const API_URL = process.env.REACT_APP_API_URL || "https://your-backend-url/api";
+// Use your backend API endpoint
+const API_URL = "https://api-driven-mini-web-app-hgmq.onrender.com/api";
 
 const Spinner = () => (
   <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100px' }}>
@@ -21,7 +21,6 @@ function App() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // Defensive fetch
   const fetchResults = async (pageNum = 1) => {
     setLoading(true);
     setError('');
@@ -42,7 +41,6 @@ function App() {
 
   useEffect(() => { fetchResults(); }, []);
 
-  // Defensive search
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!keyword.trim()) return;
@@ -95,7 +93,6 @@ function App() {
           <Spinner />
         ) : (
           <div>
-            {/* Defensive rendering for results array */}
             {Array.isArray(results) && results.length === 0 ? (
               <div className="text-center text-muted py-5">
                 <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No results" style={{width:60,opacity:0.5}} />
@@ -111,7 +108,6 @@ function App() {
                           <strong className="text-primary">Keyword:</strong> {result.keyword}
                         </div>
                         <ul className="list-group list-group-flush">
-                          {/* Defensive rendering for items array */}
                           {Array.isArray(result.items) && result.items.map((repo, i) => (
                             <li key={repo.html_url || i} className="list-group-item">
                               <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="fw-bold text-decoration-none text-dark">
@@ -128,7 +124,6 @@ function App() {
                 </div>
               )
             )}
-            {/* Defensive rendering for totalPages */}
             {Number(totalPages) > 1 && (
               <nav className="d-flex justify-content-center mt-4">
                 <ul className="pagination pagination-lg">
