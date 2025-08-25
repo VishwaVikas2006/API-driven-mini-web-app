@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # API-Driven Mini Web App
 
 ## Overview
@@ -39,3 +40,6 @@ npm start
 
 ## License
 MIT
+=======
+# API-driven-mini-web-app
+>>>>>>> 51d197cafad78d7f1cc365f66526c4dd7a5fe023
